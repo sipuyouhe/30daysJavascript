@@ -303,7 +303,7 @@ function removeTransition(e) {
 }
   
 const keys = Array.from(document.querySelectorAll('.key'));
-keys.forEach(key => key.addEventListener('transitionend',stopTransition));  
+keys.forEach(key => key.addEventListener('transitionend',removeTransition));  
 ```
 
 - 监听每一个按键元素的`transitionend`事件，当按键元素的动画结束后会触发`removeTransition`函数。
