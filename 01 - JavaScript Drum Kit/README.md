@@ -240,19 +240,19 @@ kbd {
 function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-    if (!audio) return;
+    if (!audio||!key) return;
     
     key.classList.add('playing');
     audio.currentTime = 0;
     audio.play();
 }
 /**
-* 监听页面的keydown事件，触发playAudio函数。
+* 监听页面的keydown事件，触发playSound函数。
 */
 window.addEventListener('keydown', playSound);
 ```
 
-* 监听页面的keydown事件，触发playAudio函数。
+* 监听页面的keydown事件，触发playSound函数。
 * 通过KeyCode检测我们按下的键盘按钮是哪个按钮。
     * A -> 65
     * B -> 66
@@ -282,7 +282,15 @@ window.addEventListener('keydown', playSound);
     * Z -> 90
 * 在这里我们用到了ES6的模板字符串，`${e.keyCode}`,可以动态的将按键的`Keycode`传过去，以使`audio`动态的获取每一个按键绑定的`audio`。需要注意的是模板字符串一定要使用"`"(Esc下面那个键)包裹，而不是双引号。
 * 我们注意到`audio.play();`前面一行是`audio.currentTime = 0;`，这是因为，如果没有在播放音效前将该音乐重置，会发生以下情况，当我连续点击某一按键的时候，只有第一次点击会响，第二次第三次连续的点击可能没声音。所以在每一次点击之前重置音效是很有必要的。
-* `key.classList.add('playing');`可以在按键点击的同时为该元素添加playing类，展示小动画。
+* `key.classList.add('playing');`可以在按键点击的同时为该元素添加playing类，展示小动画。`classList`属性返回元素的类名，作为`DOMTokenList`对象
+* `element.addEventListener(event, function, useCapture)`
+  event 必须。字符串，指定事件名。
+  注意: 不要使用 "on" 前缀。 例如，使用 "click" ,而不是使用 "onclick"。
+  function 必须。指定要事件触发时执行的函数。
+  useCapture 可选。布尔值，指定事件是否在捕获或冒泡阶段执行。
+  可能值:
+  true - 事件句柄在捕获阶段执行
+  false- false- 默认。事件句柄在冒泡阶段执行
 * `if(!audio) return; if(!key) return;`因为并不是每一个按键都有音效，当用户点击了非绑定音效按键，及时退出函数是很好的习惯。
 
 
