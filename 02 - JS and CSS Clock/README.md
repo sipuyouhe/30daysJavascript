@@ -12,7 +12,7 @@
 * 通过CSS的`transform：rotate(deg)`，来实时的调整指针在键盘中的位置。  
 ### 文件说明：
 (1)image:用来存放背景图片  
-(2)click.js:最终版JS逻辑  
+(2)clock.js:最终版JS逻辑  
 (3)click.css:最终版样式表  
 ## 页面布局
 
@@ -47,7 +47,7 @@
  /*时分秒指针初始化是垂直的，指针移动没有设置过渡效果和过渡时间，
 就是根据角度来定位置*/
 html{
-    /*font-size:625%,默认字体大小都是16px,16*62.5=100px,1rem=100px*/
+    /*font-size:625%,默认字体大小都是16px,16*6.25=100px,1rem=100px*/
     font-size:625%;
     background: #018DED url(./image/picture4.jpg) bottom center ;
     background-size: cover;
